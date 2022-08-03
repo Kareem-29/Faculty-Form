@@ -1,0 +1,126 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            #wrapper {
+                margin: auto;
+                width: 760px;
+                display: block;
+                background-color: #E2E4D6;
+            }
+            #header {
+                background-image: url('logo.png');
+                background-position: right;
+                background-repeat: no-repeat;
+                height: 100px;
+                width: 760px;                
+            }
+            
+            #formbody h1
+            {
+             text-align: center;   
+            }         
+            
+            #vacation {
+                padding: 0 50px;
+                
+            }  
+
+            .error
+            {
+                color: red;
+                font-style: italic;
+                font-size: 10px;
+                visibility: hidden;
+            }         
+            
+        </style>
+        
+    </head>
+    <body>
+        <div id="wrapper">
+            
+            <div id="header">
+                
+            </div>
+            
+            <div id="formbody">
+                <h1>Faculty Vacation Request Form</h1>
+                <form id="vacation" name="vacation">                   
+                       
+                        Employee ID*: <input type="text" name="id"/>
+                        <span class="error">This is required</span>                        
+                        <br/>
+                        Faculty Name*: <input type="text" name="fname"/>
+                        <span class="error">This is required</span>
+                        <br/>
+                        Gender*: <input type="radio" name="gender" value="Male"/>Male
+                        <input type="radio" name="gender" value="Female"/>Female
+                        <span class="error">This is required</span>                        
+                        <br/>
+                        Nationality: <input type="text" name="nation"/>
+                        <br/>
+                        Position*:
+                        <select name="position">
+                            <option value="default"></option>
+                            <option value="Lec">Lecturer</option>
+                            <option value="Asst">Assistant Professor</option>
+                            <option value="Assoc">Associate Professor</option>
+                            <option value="Prof">Professor</option>
+                        </select>
+                        <span class="error">This is required</span>
+                        <br/>
+                        <input type="button" value="Submit" onclick="validate()"/>              
+                    
+                </form>
+            </div> 
+                      
+            
+        </div>
+        <script>
+            function validate()
+            {        
+                var elem = document.getElementsByClassName("error");
+
+                var pos= document.forms[0].position.value;
+                 
+                if(document.forms[0].id.value =="")
+                 {
+                     elem[0].style.visibility = "visible"; 
+                     document.forms[0].id.style.border= "2px solid red";    
+                 }
+                 
+                if(document.forms[0].fname.value =="")
+                 {
+                     elem[1].style.visibility = "visible";
+                     document.forms[0].fname.style.border= "2px solid red";     
+                 }
+
+                if (!(document.forms[0].gender[0].checked || document.forms[0].gender[1].checked) )
+                 {
+                     elem[2].style.visibility = "visible";     
+                 }
+
+                if(pos=="default")
+                 {
+                     elem[3].style.visibility = "visible";
+                     document.forms[0].position.style.border= "2px solid red";     
+                 }
+
+                 else if(document.forms[0].id.value !="" && document.forms[0].fname.value !="" 
+                        &&(document.forms[0].gender[0].checked || document.forms[0].gender[1].checked)&& pos!="default")
+                 {
+                     alert("Form Submited");
+                 }
+                
+            }
+
+        </script>
+    </body>
+</html>
